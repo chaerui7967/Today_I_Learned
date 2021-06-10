@@ -6,6 +6,9 @@ A, B = map(int, input().split())
 
 m = max(A, B)
 n = min(A, B)
+
+# print(sum(range(n, m+1)))
+
 sum = (A + B) * (m - n + 1) / 2
 print(int(sum))
 

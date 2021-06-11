@@ -7,7 +7,7 @@ A, B = map(int, input().split())
 m = max(A, B)
 n = min(A, B)
 
-# print(sum(range(n, m+1)))
+# print(sum(range(n, m+1))) 시간 초과
 
 sum = (A + B) * (m - n + 1) / 2
 print(int(sum))

@@ -50,24 +50,11 @@ trans = PCA(n_components=4)
 X_dim = trans.fit_transform(df_norm)
 
 df2 = pd.DataFrame(X_dim)
+
+df2['tip'] = y
 ```
 
-![image-20210617180217628](PCA 정리.assets/image-20210617180217628.png)
+![image-20210617192423246](PCA 정리.assets/image-20210617192423246.png)
 
+ == >  기존 데이터를 합쳐서? 새로운 피처를 만들어서 타켓변수를 설명
 
-
-**어떤것이 축소됬는지 확인하는 방법**
-
-```python
-trans = PCA(n_components=7)
-
-X_dim_origin = trans.fit_transform(df_norm)
-
-df_origin = pd.DataFrame(X_dim_origin)
-```
-
-![image-20210617180258654](PCA 정리.assets/image-20210617180258654.png)
-
-
-
-결과적으로 time,size,tip_rate 부분이 탈락했다.

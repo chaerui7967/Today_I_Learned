@@ -54,7 +54,7 @@ df2 = pd.DataFrame(X_dim)
 df2['tip'] = y
 ```
 
-![image-20210617192423246](PCA 정리.assets/image-20210617192423246.png)
+![image-20210619091114679](md-images/image-20210619091114679.png)
 
  == >  기존 데이터를 합쳐서? 새로운 피처를 만들어서 타켓변수를 설명
 

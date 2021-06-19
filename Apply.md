@@ -40,13 +40,13 @@ df.apply(np.sqrt, axis = 0)
 df.apply(np.average, axis = 0)
 ```
 
-![image-20210607194732252](Apply.assets/image-20210607194732252.png)
+![image-20210619093944672](md-images/image-20210619093944672.png)
 
 ```python
 df.apply(np.average, axis = 1)
 ```
 
-![image-20210607194840364](Apply.assets/image-20210607194840364.png)
+![image-20210619093957879](md-images/image-20210619093957879.png)
 
 
 

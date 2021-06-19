@@ -8,7 +8,7 @@
 
 
 
-![image-20210611091715182](C:\Users\j\AppData\Roaming\Typora\typora-user-images\image-20210611091715182.png)
+![image-20210619090735634](md-images/image-20210619090735634.png)
 
 ### **Business Understanding(비즈니스 이해)**
 

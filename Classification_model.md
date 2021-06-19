@@ -2,11 +2,11 @@
 
 
 
-![image-20210609151734101](Classification.assets/image-20210609151734101.png)
+![image-20210619094456870](md-images/image-20210619094456870.png)
 
 ##  분류성능평가지표
 
-![image-20210609151842591](Classification.assets/image-20210609151842591.png)
+![image-20210619094514060](md-images/image-20210619094514060.png)
 
 - True Positive(TP) : 실제 True인 정답을 True라고 예측
 - False Positive(FP) : 실제 False인 정답을 True라고 예측
@@ -49,7 +49,7 @@ for i in range(len(guesses)):
 
 
 
-![img](https://t1.daumcdn.net/cfile/tistory/99F66B345BE0596109)
+![image-20210619094528642](md-images/image-20210619094528642.png)
 
 
 
@@ -69,7 +69,7 @@ for i in range(len(guesses)):
 
 **재현율**이란 실제 True인 것 중에서 모델이 True라고 예측한 것의 비율입니다. 
 
-![img](https://t1.daumcdn.net/cfile/tistory/997188435BE05B0628)
+![image-20210619094542900](md-images/image-20210619094542900.png)
 
 예로 들었던 시간당 1m 이상의 눈이 내릴지 예측하는 과제에 적절한 거다. 그러면 실제로 그렇게 눈이 내린 날짜 중 몇 개나 맞히는지 확인할 수 있으니까. 만약 여기서 언제나 False로 예측하는 분류기가 있다면 accuracy는 거의 99%를 넘기겠지만, True Positive를 찾을 수 없으니 recall이 0이 된다.
 
@@ -91,7 +91,7 @@ for i in range(len(guesses)):
 
 이제는 또 관점을 다르게 생각해봅시다. 사고의 확장이 빠른 사람들은 예상했겠지만, 위 두 지표는 모두 True를 True라고 옳게 예측한 경우에 대해서만 다루었습니다. 하지만, False를 False라고 예측한 경우도 옳은 경우입니다. 이때, 해당 경우를 고려하는 지표가 바로 **정확도(Accuracy)**입니다. 식으로는 다음과 같이 나타냅니다.
 
-![img](https://t1.daumcdn.net/cfile/tistory/99745F3F5BE0613D1A)
+![image-20210619094555468](md-images/image-20210619094555468.png)
 
 정확도는 가장 직관적으로 모델의 성능을 나타낼 수 있는 평가 지표입니다. 하지만, 여기서 고려해야하는 것이 있습니다. 바로 domain의 편중(bias)입니다. 만약 우리가 예측하고자 하는 한달 동안이 특정 기후에 부합하여 비오는 날이 흔치 않다고 생각해보죠. 이 경우에는 해당 data의 domain이 불균형하게되므로 맑은 것을 예측하는 성능은 높지만, 비가 오는 것을 예측하는 성능은 매우 낮을 수 밖에 없습니다. 따라서 이를 보완할 지표가 필요합니다.
 
@@ -109,6 +109,6 @@ for i in range(len(guesses)):
 
 F1 score는 Precision과 Recall의 조화평균 
 
-![img](https://t1.daumcdn.net/cfile/tistory/993482335BE0641515)
+![image-20210619094609122](md-images/image-20210619094609122.png)
 
 F1 score는 데이터 label이 불균형 구조일 때, 모델의 성능을 정확하게 평가할 수 있으며, 성능을 하나의 숫자로 표현할 수 있다

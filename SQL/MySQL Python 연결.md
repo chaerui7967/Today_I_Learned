@@ -30,7 +30,7 @@ connection = pymysql.connect(host='127.0.0.1', # == localhost
 
 > **cursor?**
 >
-> ![image-20210615173054225](C:\Users\j\AppData\Roaming\Typora\typora-user-images\image-20210615173054225.png)
+> ![image-20210619134638000](md-images/image-20210619134638000.png)
 >
 > MySQL 내부 테이블에서 다음과 같은 화살표를 cursor라고 한다
 

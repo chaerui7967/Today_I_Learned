@@ -5,16 +5,16 @@
 import sys
 
 s = sys.stdin.read()
-li = [0]*26
+li = [0]*26  # 문자 개수만큼 초기화
 for c in s:
     if c.islower():
-        li[ord(c)-97] += 1
+        li[ord(c)-97] += 1  # 아스키 코드 97 = a
 for i in range(26):
     if li[i] == max(li):
         print(chr(97+i), end='')
 
 
-# Counter 사용
+# Counter 사용 ==
 from collections import Counter
 from sys import stdin
 
@@ -41,4 +41,4 @@ cc = ''
 for i in dd:  # 다시 문자로
     cc += chr(i)
 
-print(cc)
+print(cc.islower())

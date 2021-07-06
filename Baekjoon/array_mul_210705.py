@@ -6,26 +6,26 @@
 N, M = map(int, input().split())
 A = []
 for _ in range(N):
-    A.append(list(map(int, input().split())))
+    A.append(list(map(int, input().split())))  # 행렬 a 입력
 
 M, K = map(int, input().split())
 B = []
-for _ in range(M):
+for _ in range(M):  # 행렬 b입력
     B.append(list(map(int, input().split())))
 
 
 #행렬 곱셈
-C = [[0 for _ in range(K)] for _ in range(N)]
+C = [[0 for _ in range(K)] for _ in range(N)]  # 곱연산의 결과 n x k 행렬을 값이 0으로 된 행렬로 만듬
 
 for n in range(N):
     for k in range(K):
         for m in range(M):
-            C[n][k] += A[n][m] * B[m][k]
+            C[n][k] += A[n][m] * B[m][k]  # 곱연산
 
 #출력문
 for i in C:
     for j in i:
-        print(j, end = ' ')
+        print(j, end =' ')
     print()
 
 

@@ -15,7 +15,7 @@ for i in range(n):
 
 coord = list(set(coord))
 
-coord.sort(key = lambda word: (word[0], word[1]))
+coord.sort(key = lambda x : (x[0], x[1]))
 
 for i in range(n):
-    print(coord[i][0],coord[i][1])
+    print(coord[i][0], coord[i][1])

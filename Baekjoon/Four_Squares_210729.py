@@ -29,3 +29,21 @@ for a in range(int(n ** 0.5), int((n // 4) ** 0.5), -1):  # 가능한 최소한�
                         min_sum = min(min_sum, 3)
 
 print(min_sum)
+
+
+
+# ======= 간단한 구현
+
+N = int(input())
+dp = [0,1]
+
+for i in range(2, N+1):
+    min_value = 1e9
+    j = 1
+
+    while (j**2) <= i:
+        min_value = min(min_value, dp[i - (j**2)])
+        j += 1
+
+    dp.append(min_value + 1)
+print(dp[N])

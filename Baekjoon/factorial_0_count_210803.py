@@ -20,6 +20,10 @@ def factorial_reduce(n):
 n = int(input())
 str(factorial_reduce(n)).count(0)  ## 맨뒤 0을 구하는 거기때문에 틀림
 
+# === 정답 n의 범위가 500이하이므로
+N = int(input())
+print(N//5 + N//25 + N//125)
+
 # 곱했을 때 뒷자리가 0이 나오는 경우는 2, 5, 10, 5의 개수가 0의 개수
 # === 런타임 에러
 from sys import stdin
@@ -34,6 +38,3 @@ while n > 5:
     n //= 5
 print(count)
 
-# === 다른방법 n의 범위가 500이하이므로
-N = int(input())
-print(N//5 + N//25 + N//125)

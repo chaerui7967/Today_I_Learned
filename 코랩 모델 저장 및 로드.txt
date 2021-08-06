@@ -1,0 +1,40 @@
+# 모델 저장 및 로드 방법
+
+Model_iris.save('Model_iris.h5')  # 코랩에 저장
+
+
+# 로컬에 저장
+
+from google.colab import files  
+files.download('Model_iris.h5')
+
+# 코렙에서 모델 열기
+
+from keras.models import load_model
+Model_local = load_model('Model_iris.h5')  
+Model_local.predict_classes(X_test)
+
+# 구글 드라이브에 저장
+
+from google.colab import drive
+
+drive.mount('/content/drive')
+
+
+# 드라이브에 있는 데이터 셋 열기
+
+import pandas as pd  
+DF = pd.read_csv('/content/drive/My Drive/Colab Notebooks/datasets/PII.csv')
+DF.head(3)
+
+# 드라이브에 모델 저장
+
+Model_iris.save('/content/drive/My Drive/Colab Notebooks/models/001_Model_iris.h5')  
+
+# 드라이브에서 모델 열기
+from keras.models import load_model
+Model_google = load_model('/content/drive/My Drive/Colab Notebooks/models/001_Model_iris.h5')
+
+# 모델 불러와서 예측
+
+Model_google.predict_classes(X_test) 

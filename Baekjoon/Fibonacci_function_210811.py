@@ -22,9 +22,9 @@ one = [0, 1, 1]
 
 def fibonacci(num):
     length = len(zero)
-    if num >= length:
+    if num >= length:  # 저장되있지 않은 수이면
         for i in range(length, num + 1):
-            zero.append(zero[i - 1] + zero[i - 2])
+            zero.append(zero[i - 1] + zero[i - 2])  # 마지막 숫자 다음부터 해당 수까지 저장
             one.append(one[i - 1] + one[i - 2])
     print('{} {}'.format(zero[num], one[num]))
 

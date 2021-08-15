@@ -1,0 +1,26 @@
+응집도의 순서는
+
+우연적(Coincidental)응집도 < 논리적(Logical) 응집도 < 시간적 응집도(Temporal) 
+< 절차적(Procedural) 응집도 < 교환적(Communication) 응집도 < 순차적(Sequential) 응집도 
+< 기능적(Functional) 응집도
+
+- 스마트 그리드 : 전기의 생산, 운반, 소비 과정에 정보통신기술을 접목하여 공급자와 소비자가 서로 상호작용함으로써 
+효율성을 높인 지능형 전력망시스템
+
+- 디지털 아카이빙 :  지속적으로 보존할 가치를 가진 디지털 객체를 장기간 관리하여 이후의 이용을 보장하는 활동
+
+SELECT σ
+PROJECT π
+JOIN ▷◁
+DIVISION ÷
+
+DML(데이터 조작어) - SELECT/INSERT/DELETE/UPDATE
+DDL(데이터 정의어) - CREATE/ALTER/DROP
+DCL(데이터 제어어) - GRANT/REVOKE/COMMIT/ROLLBACK/SAVEPOINT
+
+1.데이터링크계층 - 동기화/오류제어/순서제어
+2.물리계층 - 실제 접속 및 절단/기계,전기,기능,절차적 특성 규칙 정의
+3.응용계층 - 전자사서함/파일전송
+4.표현계층 - 데이터 변환/데이터 암호화/정보형식변환
+
+

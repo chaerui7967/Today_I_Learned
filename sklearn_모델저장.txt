@@ -1,0 +1,8 @@
+import joblib
+
+joblib.dump(gbr, 'gbr_model.pkl')
+
+# 모델 로드
+
+gbr_from_joblib = joblib.load('gbr_model.pkl') 
+gbr_from_joblib.predict(X_test)

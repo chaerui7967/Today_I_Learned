@@ -35,3 +35,8 @@ def solution(operations):
         return [heapq.nlargest(1, heap)[0], heapq.nsmallest(1, heap)[0]]
     else:
         return [0, 0]
+
+# heapq.nlargest(n, iterable)
+# - 데이터 집합에서 n개의 가장 큰 요소로 구성된 리스트를 반환
+# heapq.nsmallest(n, iterable)
+# - 데이터 집합에서 n개의 가장 작은 요소로 구성된 리스트를 반환

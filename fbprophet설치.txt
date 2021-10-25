@@ -1,0 +1,11 @@
+시계열 분석 -- fbprophet
+https://facebook.github.io/prophet/docs/installation.html
+
+시작하기 - 가상환경, 패키지 설치
+
+conda create --name prophet python=3.8.3
+conda activate prophet
+pip install ipykernel
+python -m ipykernel install --user --name prophet --display-name "Python prophet“
+conda install -c conda-forge fbprophet
+conda install -c conda-forge jupyterlab

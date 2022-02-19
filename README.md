@@ -1,7 +1,7 @@
 # `## Today_I_Learned ##`
 
 - **!1 일 1 Commit!**
-- 공부 자료
+- 공부 자료 조사
 - 알고리즘-백준
 - SQL-LeetCode
 - 코딩 테스트 준비

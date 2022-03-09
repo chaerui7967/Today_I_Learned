@@ -1,3 +1,4 @@
+from cgi import test
 import os
 import numpy as np
 import matplotlib.patches as patches
@@ -10,6 +11,19 @@ from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 import time
 import torch
 
+# from mAP_cal import predict,mean_average_precision
+
+from torch.utils.tensorboard import SummaryWriter
+writer = SummaryWriter()
+criterion = torch.nn.MSELoss()
+
+
+# import torch.nn.functional as F
+from tqdm import tqdm
+from engine import evaluate
+
+# import utils_ObjectDetection as utils
+
 if torch.cuda.is_available():    
     device = torch.device("cuda")
     print('There are %d GPU(s) available.' % torch.cuda.device_count())
@@ -18,6 +32,8 @@ if torch.cuda.is_available():
 else:
     print('No GPU available, using the CPU instead.')
     device = torch.device("cpu")
+
+
 
 def generate_box(obj):
     
@@ -64,7 +80,7 @@ def generate_target(file):
         for i in objects:
             boxes.append(generate_box(i))
             labels.append(generate_label(i))
-        print(labels)
+        # print(labels)
 
         boxes = torch.as_tensor(boxes, dtype=torch.float32) 
         labels = torch.as_tensor(labels, dtype=torch.int64) 
@@ -74,31 +90,6 @@ def generate_target(file):
         target["labels"] = labels
         
         return target
-
-# def plot_image_from_output(img, annotation):
-    
-#     img = img.cpu().permute(1,2,0)
-    
-#     fig,ax = plt.subplots(1)
-#     ax.imshow(img)
-    
-#     for idx in range(len(annotation["boxes"])):
-#         xmin, ymin, xmax, ymax = annotation["boxes"][idx]
-
-#         if annotation['labels'][idx] == 1 :
-#             rect = patches.Rectangle((xmin,ymin),(xmax-xmin),(ymax-ymin),linewidth=1,edgecolor='r',facecolor='none')
-        
-#         elif annotation['labels'][idx] == 2 :
-            
-#             rect = patches.Rectangle((xmin,ymin),(xmax-xmin),(ymax-ymin),linewidth=1,edgecolor='g',facecolor='none')
-            
-#         else :
-        
-#             rect = patches.Rectangle((xmin,ymin),(xmax-xmin),(ymax-ymin),linewidth=1,edgecolor='orange',facecolor='none')
-
-#         ax.add_patch(rect)
-
-#     plt.show()
 
 class MaskDataset(object):
     def __init__(self, transforms, path):
@@ -148,8 +139,7 @@ data_loader = torch.utils.data.DataLoader(dataset, batch_size=4, collate_fn=coll
 test_data_loader = torch.utils.data.DataLoader(test_dataset, batch_size=2, collate_fn=collate_fn)
 
 def get_model_instance_segmentation(num_classes):
-  
-    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=False)
     in_features = model.roi_heads.box_predictor.cls_score.in_features
     model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
 
@@ -160,27 +150,61 @@ model = get_model_instance_segmentation(4)
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu') 
 model.to(device)
 
-num_epochs = 30
+num_epochs = 1000
 params = [p for p in model.parameters() if p.requires_grad]
 optimizer = torch.optim.SGD(params, lr=0.005,
                                 momentum=0.9, weight_decay=0.0005)
 
 print('----------------------train start--------------------------')
+num = 1
 for epoch in range(num_epochs):
     start = time.time()
     model.train()
     i = 0    
     epoch_loss = 0
     for imgs, annotations in data_loader:
+        
+        # print(imgs)
+        # print(annotations)
+
         i += 1
         imgs = list(img.to(device) for img in imgs)
         annotations = [{k: v.to(device) for k, v in t.items()} for t in annotations]
-        loss_dict = model(imgs, annotations) 
-        losses = sum(loss for loss in loss_dict.values())        
+        # print(annotations)
+        loss_dict = model(imgs, annotations)
+        
+        # print('@'*100)
+        # print(loss_dict)
+        # print('@'*100)
+
+        losses = sum(loss for loss in loss_dict.values())
+
+        writer.add_scalar("Loss/train", losses, epoch)
 
         optimizer.zero_grad()
         losses.backward()
         optimizer.step() 
         epoch_loss += losses
+
+    with open('log.txt', 'a') as f:
+        f.write(f'epoch : {epoch+1}, Loss : {epoch_loss}, time : {time.time() - start}')
+        
     print(f'epoch : {epoch+1}, Loss : {epoch_loss}, time : {time.time() - start}')
-    torch.save(model.state_dict(),f'model_{num_epochs}.pt')
+    torch.save(model.state_dict(),f'hyundai_xai/model_{num}.pt')    
+    num += 1
+
+
+     # # map 계산
+    # img_num=1
+    # model.eval()
+    # # evaluate(model, test_data_loader, device=device)
+    # # print(model(imgs))
+    
+
+    #     pred_boxes, classes, labels, indices = predict(im, model, device, 0.5)
+    #     pred_boxes = [img_num] + classes + pred_boxes
+    #     print(pred_boxes)
+    #     anno = [{a: b.to(device) for a, b in an.items()} for an in anno]
+    #     true_boxes = [img_num] + anno[0]['labels'] + anno[0]['boxes']
+    #     print(mean_average_precision(pred_boxes, true_boxes))
+    #     img_num+=1

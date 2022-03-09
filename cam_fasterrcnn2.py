@@ -114,10 +114,13 @@ print(device)
 print('check')
 torch.cuda.empty_cache()
 num_classes = 4
-model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=False)
 in_features = model.roi_heads.box_predictor.cls_score.in_features
 model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
-model.load_state_dict(torch.load('model_30.pt'))
+
+target_layers = [model.backbone]
+
+model.load_state_dict(torch.load('hyundai_xai/model_14.pt'))
 
 
 with torch.no_grad():
@@ -138,12 +141,26 @@ for img in im_list:
     input_tensor = input_tensor.unsqueeze(0)
 
     # Run the model and display the detections
-    boxes, classes, labels, indices = predict(input_tensor, model, device, 0.75)
+    boxes, classes, labels, indices = predict(input_tensor, model, device, 0.9)
+    # print(classes)
+    # print('@@@@@@@')
+    # print(labels)
+    # print(classes)
+    # print(boxes)
+    # print('@@@@@@')
+    
     image = draw_boxes(boxes, labels, classes, image)
 
     cv2.imwrite(f'output/re/{new_img}_ori.jpg',image)
 
-    target_layers = [model.backbone]
+    # target_layers = [model.backbone]
+    
+    # print('@@@@@@@')
+    # print(labels)
+    # print(classes)
+    # print(boxes)
+    # print('@@@@@@')
+    
     targets = [FasterRCNNBoxScoreTarget(labels=labels, bounding_boxes=boxes)]
 
     # model = nn.DataParallel(model)
@@ -156,10 +173,10 @@ for img in im_list:
     # grayscale_cam = cam(input_tensor, targets=targets)
     # grayscale_cam = grayscale_cam[0, :]
 
-    cam = GradCAMPlusPlus(model,
-                target_layers, 
-                use_cuda=torch.cuda.is_available(),
-                reshape_transform=fasterrcnn_reshape_transform)
+    # cam = GradCAMPlusPlus(model,
+    #             target_layers, 
+    #             use_cuda=torch.cuda.is_available(),
+    #             reshape_transform=fasterrcnn_reshape_transform)
 
     # cam = ScoreCAM(model=model,
     #             target_layers=target_layers, 
@@ -168,16 +185,18 @@ for img in im_list:
     # torch.cuda.empty_cache()
     # print('camsssss')
     # cam.batch_size = 1
-    # cam = AblationCAM(model,
-    #            target_layers, 
-    #            use_cuda=torch.cuda.is_available(), 
-    #            reshape_transform=fasterrcnn_reshape_transform,
-    #            ablation_layer=AblationLayerFasterRCNN())
+    cam = AblationCAM(model,
+               target_layers, 
+               use_cuda=torch.cuda.is_available(), 
+               reshape_transform=fasterrcnn_reshape_transform,
+               ablation_layer=AblationLayerFasterRCNN())
     # Take the first image in the batch:
     # with torch.no_grad():
     grayscale_cam = cam(input_tensor, targets=targets, eigen_smooth=True)[0, :]
    
-    cam_image = show_cam_on_image(image_float_np, grayscale_cam, use_rgb=True)
+    cam_image = show_cam_on_image(image_float_np, grayscale_cam, use_rgb=False)
+    # cam_image = show_cam_on_image(image_float_np, grayscale_cam, use_rgb=True)
+
     # And lets draw the boxes again:
     image_with_bounding_boxes = draw_boxes(boxes, labels, classes, cam_image)
     Image.fromarray(image_with_bounding_boxes)

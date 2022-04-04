@@ -1,6 +1,6 @@
 # `## ~Today_I_Learned~ ##`
 
-- **@1 일 1 Commit@**
+- **#1 일 1 Commit#**
 - **! 공부 자료조사 !**
 - **알고리즘 - 백준 1문제!**
 - **! SQL-LeetCode !**

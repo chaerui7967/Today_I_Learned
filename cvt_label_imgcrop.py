@@ -6,6 +6,8 @@ import os
 import json
 import io
 
+# labelme 로 작업한 object detect dataset을 crop한 후 labelme 형식으로 저장
+
 # def img_b64_to_arr(img_b64):
 #     f = io.BytesIO()
 #     f.write(base64.b64decode(img_b64))

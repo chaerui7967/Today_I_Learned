@@ -1,4 +1,4 @@
-# `## Today_I_Learned ##`
+# `Today_I_Learned ##`
 
 - **!!~1 Day 1 Commi~@@**
 - **공부 자료조사!##**

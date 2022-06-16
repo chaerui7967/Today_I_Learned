@@ -1,7 +1,7 @@
 # `Today_I_Learned~~!!`
 
 - **1 Day 1 Commit**
-- Gstreamer 자료조사
+- Gstreamer 자료조사--
 - **!공부 자료조사!**
 - **코드정리**
 - **C,Cpp 다시보기**

@@ -20,7 +20,7 @@
 - **@ 그날 배운 것들 정리 @**
 
 - **매일 매일 그 날 배운것을 정리**
-- labelme2coco --> 클래스 순서가 뒤죽박죽됨 
+- labelme2coco --> 클래스 순서가 뒤죽박죽됨!
 - 참고
   - git add 취소
     - `git reset HEAD`

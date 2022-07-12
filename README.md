@@ -1,6 +1,6 @@
 # `Today_I_Learned!`
 
-- **1 Day 1 Commit``**
+- **``1 Day 1 Commit``**
 - **Gstreamer 자료조사**
   - frame 수 확인법
   - 현재 프레임 알림 - rtsp 전송확인

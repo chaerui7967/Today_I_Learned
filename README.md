@@ -22,7 +22,7 @@
 - **``매일 매일 그 날 배운것을 정리``**
 - labelme2coco --> 클래스 순서가 뒤죽박죽됨!
 - 참고
-  - sql문 다시 복습`` 
+  - ``sql문 다시 복습`` 
     - docker에 mariadb 올리기
   - git add 취소
     - `git reset HEAD`

@@ -5,7 +5,7 @@
   - frame 수 확인
   - 현재 프레임 알림 - rtsp 전송확인
   - bodypose
-  - deepstream
+  - deepstream..
 - ``공유기 네트워크 설정``
   - 메인 인터넷선 없어도 구성 가능
 - **``공부 자료조사``**

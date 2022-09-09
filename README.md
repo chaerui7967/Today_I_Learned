@@ -29,4 +29,5 @@
   - ``sql문 다시 복습`` 
     - docker에 mariadb 올리기
   - git add 취소!
+    - rebase
     - `git reset HEAD`

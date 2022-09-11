@@ -26,7 +26,7 @@
 - `labelme2coco --> 클래스 순서가 뒤죽박죽됨!!`
 - **`언리얼엔진~`**
 - 참고
-  - ``sql문 다시 복습`` 
+  - ``sql문 다시 복습..`` 
     - docker에 mariadb 올리기
   - git add 취소~
     - rebase

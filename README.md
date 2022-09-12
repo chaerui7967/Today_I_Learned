@@ -31,3 +31,4 @@
   - git add 취소~
     - rebase
     - `git reset HEAD`
+- 개인 프로젝트 진행

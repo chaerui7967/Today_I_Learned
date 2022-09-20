@@ -32,5 +32,5 @@
     - rebase
     - `git reset HEAD`
 - 개인 프로젝트 진행..
-  - unreal engine 사용 게임 만들기
+  - unreal engine 사용 게임 만들기..
   - IP카메라로 가족 인식 프로그램...
